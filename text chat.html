@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slimeband - Text Chat</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #f9d423;
+        }
+
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .chat-messages p {
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="text"], input[type="file"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            color: #fff;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="donate.html">DONATE</a>
+            <a href="services.html">SERVICES</a>
+        </nav> <br>
+        <h1>Text Chat</h1>
+        <p>Chat with other users and share files (PDF, TXT, DOCX, JPG, PNG, PPT - max 100MB).</p>
+    </header>
+
+    <!-- Chat Section -->
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Chat messages will be appended here -->
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message here..." />
+            <input type="file" id="fileInput" />
+            <button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Slimeband. All rights reserved.
+    </footer>
+
+    <script>
+        // JavaScript for chat functionality
+        const chatMessages = document.getElementById("chatMessages");
+        const messageInput = document.getElementById("messageInput");
+        const fileInput = document.getElementById("fileInput");
+        const sendMessageButton = document.getElementById("sendMessage");
+
+        const allowedFileTypes = ["pdf", "txt", "docx", "jpg", "jpeg", "png", "ppt"];
+        const maxFileSize = 100 * 1024 * 1024; // 100 MB
+
+        sendMessageButton.addEventListener("click", () => {
+            const message = messageInput.value.trim();
+            const file = fileInput.files[0];
+
+            if (message) {
+                appendMessage("You", message);
+                messageInput.value = "";
+            }
+
+            if (file) {
+                const fileType = file.name.split(".").pop().toLowerCase();
+                if (!allowedFileTypes.includes(fileType)) {
+                    alert("Unsupported file type. Only PDF, TXT, DOCX, JPG, PNG, and PPT are allowed.");
+                    fileInput.value = "";
+                    return;
+                }
+
+                if (file.size > maxFileSize) {
+                    alert("File size exceeds 100MB limit.");
+                    fileInput.value = "";
+                    return;
+                }
+
+                appendMessage("You", `Sent a file: ${file.name}`);
+                fileInput.value = "";
+            }
+        });
+
+        function appendMessage(sender, content) {
+            const messageElement = document.createElement("p");
+            messageElement.textContent = `${sender}: ${content}`;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

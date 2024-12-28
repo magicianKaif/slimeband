@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Slimeband</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f9d423;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input::placeholder {
+            color: #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+
+        .error {
+            color: #ff4e50;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="about.html">ABOUT</a>
+        <a href="donate.html">DONATE</a>
+        <a href="services.html">SERVICES</a>
+    </nav> 
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <div class="error" id="errorMessage"></div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <footer>
+        © 2024 Slimeband. All rights reserved.
+    </footer>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Simulated Registered Users Data (Replace with Database Integration)
+        const registeredUsers = [
+            { username: "user1", password: "password1" },
+            { username: "user2", password: "password2" }
+        ];
+
+        // Form Submission Handler
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validate User Credentials
+            const user = registeredUsers.find(
+                (u) => u.username === username && u.password === password
+            );
+
+            if (user) {
+                alert("Login successful!");
+                // Redirect to a protected page or user dashboard
+                window.location.href = "dashboard.html";
+            } else {
+                errorMessage.textContent = "Invalid username or password.";
+            }
+        });
+    </script>
+</body>
+</html>

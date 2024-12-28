@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Slimeband</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+        }
+
+        header {
+            margin: 30px 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            letter-spacing: 10px;
+            font-family: cursive;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-family: monospace;
+            letter-spacing: 5px;
+        }
+
+        /* Services Container */
+        .services {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .service-item {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(to bottom, #eeeeee, #cccccc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(45deg); /* Diamond Shape */
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: rotate(45deg) scale(1.1);
+            background: linear-gradient(to bottom, #f9d423, #ff4e50);
+            color: white;
+        }
+
+        .service-item span {
+            transform: rotate(-45deg); /* Correct text orientation */
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="donate.html">DONATE</a>
+        </nav> <br> <br>
+        <h1>SLIMEBAND</h1> <br> <br> <br> <br> 
+        <h2>S E R V I C E S</h2> <br> <br> <br> 
+    </header>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="service-item">
+            <span><a href="voice chat.html" class="service-link">VOICE CHAT</a></span> 
+        </div>
+        <div class="service-item">
+            <span><a href="text chat.html" class="service-link">TEXT CHAT</a></span>
+        </div>
+        <div class="service-item">
+            <span><a href="video chat.html" class="service-link">VIDEO CHAT</a>
+            </span>
+        </div>
+    </section>
+</body>
+</html>

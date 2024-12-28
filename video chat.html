@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call - Slimeband</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 10px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #f9d423;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #video-container {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .video-box {
+            background: #1b1b1b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-box.large {
+            flex: 1 1 60%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-box.small {
+            flex: 1 1 20%;
+            max-width: 200px;
+            aspect-ratio: 1 / 1;
+            border: 2px solid #f9d423;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 2px solid #f9d423;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            color: #fff;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="donate.html">DONATE</a>
+            <a href="services.html">SERVICES</a>
+        </nav> <br> <br>
+        <h1>Slimeband Video Call</h1>
+    </header>
+
+    <!-- Video Container -->
+    <div id="video-container">
+        <!-- Other User's Video -->
+        <div class="video-box large" id="largeVideo">
+            <video autoplay muted></video>
+        </div>
+
+        <!-- Self Video -->
+        <div class="video-box small" id="selfVideo">
+            <video autoplay muted></video>
+        </div>
+
+        <!-- More Small Videos for Other Users -->
+        <div class="video-box small" id="user1Video">
+            <video autoplay></video>
+        </div>
+        <div class="video-box small" id="user2Video">
+            <video autoplay></video>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls">
+        <button id="startCall">Start Call</button>
+        <button id="screenShare">Share Screen</button>
+        <button id="endCall">End Call</button>
+    </div>
+
+    <script>
+        // References to video elements
+        const selfVideoElement = document.querySelector('#selfVideo video');
+        const largeVideoElement = document.querySelector('#largeVideo video');
+        const startCallButton = document.getElementById('startCall');
+        const screenShareButton = document.getElementById('screenShare');
+        const endCallButton = document.getElementById('endCall');
+
+        // Start Video Stream
+        async function startVideoStream() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                // Display the self view
+                selfVideoElement.srcObject = stream;
+                selfVideoElement.play();
+
+                // Display in the large box for testing
+                largeVideoElement.srcObject = stream;
+                largeVideoElement.play();
+            } catch (error) {
+                console.error('Error accessing camera or microphone: ', error);
+                alert('Please enable your camera and microphone for video calls.');
+            }
+        }
+
+        // Start Screen Sharing
+        async function startScreenShare() {
+            try {
+                const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                largeVideoElement.srcObject = screenStream;
+                largeVideoElement.play();
+
+                // Stop screen sharing when finished
+                screenStream.getVideoTracks()[0].addEventListener('ended', () => {
+                    alert('Screen sharing has ended.');
+                    startVideoStream(); // Revert back to regular camera feed
+                });
+            } catch (error) {
+                console.error('Error sharing screen: ', error);
+                alert('Unable to start screen sharing.');
+            }
+        }
+
+        // Event Listeners
+        startCallButton.addEventListener('click', startVideoStream);
+        screenShareButton.addEventListener('click', startScreenShare);
+        endCallButton.addEventListener('click', () => {
+            // Stop the video stream
+            const tracks = selfVideoElement.srcObject.getTracks();
+            tracks.forEach(track => track.stop());
+            selfVideoElement.srcObject = null;
+            largeVideoElement.srcObject = null;
+            alert('Call ended.');
+        });
+    </script>
+</body>
+</html>

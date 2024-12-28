@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Slimeband</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .contact-form input {
+            height: 40px;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+
+        /* Contact Details */
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-details p {
+            margin: 5px 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #f9d423;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="donate.html">DONATE</a>
+            <a href="services.html">SERVICES</a>
+        </nav> <br>
+        <h1>Contact Us</h1> <br>
+        <p>Have an inquiry, collaboration request, or need to report something? Reach out to us below!</p>
+    </header>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="contact-details">
+        <p>Email: <span class="highlight">kaifshaikh5006@proton.me</span></p>
+        <p>Session App ID: <span class="highlight">05076e6ef8b7209ce7c83db4edf188f379a80e71cdadd4c36f2d63b1185255c92a</span></p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Form validation and message handling
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (name === '' || email === '' || message === '') {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Simulate form submission
+            alert('Thank you, ' + name + '! Your message has been sent.');
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>

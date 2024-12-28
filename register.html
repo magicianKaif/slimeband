@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Slimeband</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f9d423;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input::placeholder {
+            color: #ddd;
+        }
+
+        .captcha-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .captcha-box {
+            font-size: 16px;
+            font-weight: bold;
+            background: #4b79a1;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 80px;
+        }
+
+        .error {
+            color: #ff4e50;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="about.html">ABOUT</a>
+        <a href="donate.html">DONATE</a>
+        <a href="services.html">SERVICES</a>
+    </nav> 
+    <div class="registration-container">
+        <h1>Register</h1>
+        <form id="registrationForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="6-8 characters" minlength="6" maxlength="8" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
+
+            <div class="captcha-container">
+                <div class="captcha-box" id="captchaBox"></div>
+                <input type="text" id="captchaInput" placeholder="Enter CAPTCHA" required>
+            </div>
+
+            <div class="error" id="errorMessage"></div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <footer>
+        © 2024 Slimeband. All rights reserved.
+    </footer>
+
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const captchaBox = document.getElementById('captchaBox');
+        const captchaInput = document.getElementById('captchaInput');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Function to Generate CAPTCHA
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return captcha;
+        }
+
+        // Display CAPTCHA on Page Load
+        captchaBox.textContent = generateCaptcha();
+
+        // Handle Form Submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const enteredCaptcha = captchaInput.value;
+            const generatedCaptcha = captchaBox.textContent;
+
+            // Clear Error Message
+            errorMessage.textContent = '';
+
+            // Password Validation
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match!';
+                return;
+            }
+
+            // CAPTCHA Validation
+            if (enteredCaptcha !== generatedCaptcha) {
+                errorMessage.textContent = 'CAPTCHA is incorrect!';
+                return;
+            }
+
+            alert('Registration successful!');
+            form.reset();
+            captchaBox.textContent = generateCaptcha(); // Refresh CAPTCHA
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Slimeband</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 35px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #f9d423;
+        }
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0 30px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .wallet {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .wallet h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #f9d423;
+        }
+
+        .wallet-address {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            word-wrap: break-word;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(to right, #f9d423, #ff4e50);
+            color: #fff;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="donate.html">DONATE</a>
+            <a href="services.html">SERVICES</a>
+        </nav> <br> <br>
+        <h1>Support Slimeband</h1>
+        <p>
+            Your donations help us continue creating innovative platforms for anonymous communication. 
+            Every contribution, no matter the size, empowers us to keep this site alive and improve our services. Thank you for your support!
+        </p>
+    </header>
+
+    <!-- Wallet Section -->
+    <div class="wallet">
+        <h2>Donate via Crypto Wallet</h2>
+        <p class="wallet-address">
+            0x28bF7B03d48F56a0690eAF909b90343581ceB9cC
+        </p>
+        <button id="copyButton">Copy Wallet Address</button>
+    </div>
+
+    <footer>
+        © 2024 Slimeband. All rights reserved.
+    </footer>
+
+    <script>
+        // Copy wallet address to clipboard
+        const copyButton = document.getElementById('copyButton');
+        const walletAddress = document.querySelector('.wallet-address').textContent;
+
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(walletAddress).then(() => {
+                alert('Wallet address copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    </script>
+</body>
+</html>
