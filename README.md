@@ -16,6 +16,13 @@ Welcome to **SlimeBand**, the ultimate hacker-themed platform! Whether you're a 
 - **Database**: MongoDB
 - **Version Control**: Git & GitHub
 
+- ![image](https://github.com/user-attachments/assets/7b63944f-12ae-4847-a3af-a98b9f2bbdf3)
+- ![image](https://github.com/user-attachments/assets/e3e9b93d-8c03-46e0-b2a8-e69ca830f09c)
+- ![image](https://github.com/user-attachments/assets/bbd9a01a-9ca8-481c-9cd0-6de5a616d581)
+
+
+
+
 ## Installation
 
 1. Clone this repository:
