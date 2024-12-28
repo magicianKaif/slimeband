@@ -4,7 +4,7 @@ Welcome to **SlimeBand**, the ultimate hacker-themed platform! Whether you're a 
 
 ## Features
 
-- 🎶 **VENDOR **: Upload, share, and discover amazing product.
+-  **VENDOR **: Upload, share, and discover amazing product.
 - 🕶️ **Hacker Vibes**: A sleek, dark-themed design tailored for tech lovers.
 - 🌐 **Community Driven**: Collaborate and interact with like-minded individuals.
 - ⚙️ **Customizable Profiles**: Show off your style and skills.
@@ -72,5 +72,5 @@ Got questions or suggestions? Feel free to reach out:
 
 - **GitHub**: [magician slime](https://github.com/yourusername)
 - **Email**: kaifshaikh5006@proton.me
-- **Telegram**: t.me/magician_slime/
+- **Telegram**: https://t.me/magician_slime
 
